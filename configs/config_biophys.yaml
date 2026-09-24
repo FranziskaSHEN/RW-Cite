@@ -1,0 +1,26 @@
+data_downloading:
+  download_directory: "biophysics_retrieval/"
+  gexf_file: "test_graph_rr.gexf"
+  processing:
+    random_seed: 10
+    keep_unstructured_content: false
+    arxiv_rate_limit: 3
+    skip_if_downloaded: true
+    download_timeout_sec: 120
+    max_tar_bytes: 104857600
+    download_retries: 2
+
+retriever:
+  embedder: models/base/bge-large-en-v1.5
+  num_retrievals: 5000
+  load_arxiv_embeds: True
+  apply_score_tau: true
+  score_tau_margin: 0.08
+  recent_years: 10
+  queries:
+    - "molecular dynamics protein folding biophysics"
+    - "coarse-grained biomolecular simulation"
+    - "single-molecule biophysics soft matter NOT protein-ligand docking generative design NOT medical imaging radiology"
+
+retrieval_nodes_path: "biophysics_retrieval/retrieval_nodes.json"
+failed_downloads_path: "biophysics_retrieval/failed_downloads.json"

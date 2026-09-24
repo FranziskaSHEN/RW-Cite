@@ -1,0 +1,7 @@
+#!/usr/bin/env python3
+"""Thin wrapper → python -m rwcite.cli.extract_graph"""
+import runpy
+import sys
+if __name__ == "__main__":
+    sys.argv[0] = "rwcite.cli.extract_graph"
+    runpy.run_module("rwcite.cli.extract_graph", run_name="__main__")

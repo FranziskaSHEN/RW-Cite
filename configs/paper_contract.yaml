@@ -1,0 +1,75 @@
+# Machine-readable contract for the configuration reported in the paper.
+# Compatibility-oriented artifact names may differ; the semantics below are
+# authoritative for the public benchmark and reference framework.
+corpus_records: 3144903
+
+benchmark_domains:
+  - ewm
+  - gw
+  - driving
+  - cosmo
+  - radio
+  - wsi
+  - exo
+  - sqc
+  - fno
+  - sce
+
+benchmark_inventory:
+  # seeds, nodes, edges, train queries, test queries
+  ewm:     [4934, 27705, 141668, 3423, 381]
+  gw:      [5568, 29027, 130359, 2528, 281]
+  driving: [4385, 26952, 109473, 2946, 328]
+  cosmo:   [4993, 36575, 132656, 2598, 289]
+  radio:   [7172, 24165,  65214, 1460, 163]
+  wsi:     [4972, 19547,  50660, 1665, 185]
+  exo:     [4995, 17637,  67385, 1749, 195]
+  sqc:     [7891, 20470,  87273, 2636, 293]
+  fno:     [4978, 21050,  58375, 1962, 219]
+  sce:     [9008, 34265,  97078, 1832, 204]
+benchmark_totals:
+  seeds: 58896
+  nodes: 257393
+  edges: 940141
+  train_queries: 22799
+  test_queries: 2538
+
+reference_framework:
+  structural_window: 400
+  cross_encoder:
+    backbone: allenai/scibert_scivocab_uncased
+    max_length: 256
+    list_size: 64
+    max_incoming_contexts: 3
+    epochs: 2
+    learning_rate: 0.00002
+    warmup_ratio: 0.06
+  graph_attention:
+    layers: 2
+    relations: [incoming_citation, outgoing_citation, co_citation]
+  score_and_rank_fusion:
+    gat_score_weight: 0.4
+    reciprocal_rank_offset: 20
+    reciprocal_rank_weight: 0.4
+
+hlm_comparison:
+  retriever_window: 30
+  output_size: 10
+  temperature: 0
+  evaluations: 1
+
+citation_sentence_adapter:
+  base_model: Qwen3-32B
+  quantization_bits: 8
+  compute_precision: bfloat16
+  lora_rank: 16
+  lora_alpha: 64
+  lora_dropout: 0.05
+  target_modules: [q_proj, k_proj, v_proj, o_proj]
+  max_length: 2048
+  epochs: 2
+  per_device_batch_size: 1
+  gradient_accumulation_steps: 8
+  training_pool_size: 50
+  inference_size: 10
+  hidden_reasoning: false

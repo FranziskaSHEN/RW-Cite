@@ -1,0 +1,26 @@
+data_downloading:
+  download_directory: "electrochemistry_energy_storage_retrieval/"
+  gexf_file: "test_graph_rr.gexf"
+  processing:
+    random_seed: 10
+    keep_unstructured_content: false
+    arxiv_rate_limit: 3
+    skip_if_downloaded: true
+    download_timeout_sec: 120
+    max_tar_bytes: 104857600
+    download_retries: 2
+
+retriever:
+  embedder: models/base/bge-large-en-v1.5
+  num_retrievals: 5000
+  load_arxiv_embeds: True
+  apply_score_tau: true
+  score_tau_margin: 0.12
+  recent_years: 10
+  queries:
+    - "electrochemistry energy storage lithium ion battery electrode materials"
+    - "electrocatalysis fuel cell electrolyzer electrochemical energy conversion"
+    - "solid state battery electrolytes electrochemical interfaces NOT molecular docking"
+
+retrieval_nodes_path: "electrochemistry_energy_storage_retrieval/retrieval_nodes.json"
+failed_downloads_path: "electrochemistry_energy_storage_retrieval/failed_downloads.json"

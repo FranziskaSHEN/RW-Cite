@@ -1,0 +1,26 @@
+data_downloading:
+  download_directory: "radio_astronomy_retrieval/"
+  gexf_file: "test_graph_rr.gexf"
+  processing:
+    random_seed: 10
+    keep_unstructured_content: false
+    arxiv_rate_limit: 3
+    skip_if_downloaded: true
+    download_timeout_sec: 120
+    max_tar_bytes: 104857600
+    download_retries: 2
+
+retriever:
+  embedder: models/base/bge-large-en-v1.5
+  num_retrievals: 5000
+  load_arxiv_embeds: True
+  apply_score_tau: true
+  score_tau_margin: 0.08
+  recent_years: 10
+  queries:
+    - "radio astronomy interferometry VLBI SKA radio telescope"
+    - "pulsar radio astronomy fast radio bursts FRB"
+    - "radio galaxies AGN synchrotron radio surveys NOT gravitational wave interferometer LISA"
+
+retrieval_nodes_path: "radio_astronomy_retrieval/retrieval_nodes.json"
+failed_downloads_path: "radio_astronomy_retrieval/failed_downloads.json"

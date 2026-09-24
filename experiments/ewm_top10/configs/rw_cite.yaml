@@ -1,0 +1,24 @@
+method: rw_cite
+domain: ewm
+query_text: title_and_abstract
+candidate_universe: multi_query_bge_plus_graph_expansion
+structural_window: 400
+candidate_text: title_plus_clean_incoming_citation_context
+max_citation_sentences: 3
+cross_encoder:
+  base: models/base/scibert_scivocab_uncased
+  max_length: 256
+  epochs: 2
+  negatives: random_in_window
+graph_attention:
+  relations: [incoming_citation, outgoing_citation, co_citation]
+  target_edge_masking: true
+  fold_out_training: true
+fusion:
+  mode: score_and_rank
+  alpha_gat: 0.4
+  reciprocal_rank_k: 20
+  rank_weight: 0.4
+output_k: 10
+graph_protocol: split_masked
+masked_sources: [test, frontier]

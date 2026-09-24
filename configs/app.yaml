@@ -1,0 +1,18 @@
+data_root: .
+default_domain: sqc
+cuda_visible_devices: "0"
+gexf_cache_max_domains: 2
+
+# Topics supplement (GLM) + BGE embeddings — python -m rwcite.cli.update_corpus
+retriever:
+  embedder: models/base/bge-large-en-v1.5
+
+corpus_update:
+  topic_backend: llm
+  # Set RWCITE_LLM_BASE_URL to an OpenAI-compatible endpoint.
+  llm_base_url: ""
+  llm_model: "GLM-5.1"
+  llm_api_key_env: "RWCITE_LLM_API_KEY"
+  topic_sleep_sec: 0.0
+  topic_batch_size: 128
+  topic_workers: 16

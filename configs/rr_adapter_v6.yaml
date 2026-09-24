@@ -1,0 +1,42 @@
+# Citation-sentence QLoRA on Qwen3-32B using fused Top-50 pools.
+# The v6 and l0_rrf strings below are retained for frozen-artifact compatibility.
+# Paths for train_jsonl / model are injected by scripts/run_domain_rr_adapter_v6.sh
+# via --domain (see rwcite.adapter.paths).
+
+inference:
+  base_model: models/base/Qwen3-32B
+  generation_args:
+    max_new_tokens: 512
+    do_sample: false
+    temperature: 0.3
+    top_p: 0.9
+    top_k: 50
+    repetition_penalty: 1.05
+
+training:
+  mask_prompt_labels: true
+  trainer_args:
+    per_device_train_batch_size: 1
+    gradient_accumulation_steps: 8
+    warmup_steps: 50
+    num_train_epochs: 2
+    learning_rate: 0.0001
+    lr_scheduler_type: cosine
+    logging_steps: 1
+    save_steps: 200
+  tokenizer:
+    max_length: 2048
+  qlora:
+    rank: 16
+    lora_alpha: 64
+    lora_dropout: 0.05
+    target_modules:
+      - q_proj
+      - k_proj
+      - v_proj
+      - o_proj
+
+reference_recommend:
+  k: 10
+  n_pool: 50
+  pool_source: l0_rrf_3.1

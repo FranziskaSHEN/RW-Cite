@@ -1,0 +1,26 @@
+data_downloading:
+  download_directory: "nonlinear_optics_retrieval/"
+  gexf_file: "test_graph_rr.gexf"
+  processing:
+    random_seed: 10
+    keep_unstructured_content: false
+    arxiv_rate_limit: 3
+    skip_if_downloaded: true
+    download_timeout_sec: 120
+    max_tar_bytes: 104857600
+    download_retries: 2
+
+retriever:
+  embedder: models/base/bge-large-en-v1.5
+  num_retrievals: 5000
+  load_arxiv_embeds: True
+  apply_score_tau: true
+  score_tau_margin: 0.08
+  recent_years: 10
+  queries:
+    - "nonlinear optics frequency conversion second harmonic generation Kerr"
+    - "ultrafast nonlinear optics optical parametric oscillator amplifier"
+    - "nonlinear photonic crystals optical solitons NOT metasurface inverse design NOT wireless RIS"
+
+retrieval_nodes_path: "nonlinear_optics_retrieval/retrieval_nodes.json"
+failed_downloads_path: "nonlinear_optics_retrieval/failed_downloads.json"

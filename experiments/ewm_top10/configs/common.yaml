@@ -1,0 +1,13 @@
+domain: ewm
+split: time_elig10_v2
+output_k: 10
+development_split: strict_month_boundary
+development_ratio_target: 0.10
+seeds: [42, 43, 44]
+primary_metric: hits_at_10
+secondary_metrics: [recall_at_10, ndcg_at_10, mrr, recall_at_100, recall_at_400]
+bootstrap_samples: 10000
+temporal_policy: strictly_before_query_month
+same_month_policy: drop
+unknown_date_policy: drop
+query_outgoing_edges_hidden: true

@@ -1,0 +1,56 @@
+# Aggregate values reported in the paper. Per-query predictions remain the
+# source of truth; this manifest gives release tooling a compact consistency
+# target and does not replace the frozen evaluation artifacts.
+ewm_end_to_end:
+  rwcite:
+    hits_at_10: 4.0000
+    hits_at_30: 7.3937
+    ndcg_at_10: 0.4445
+    mrr_at_10: 0.6777
+    recall_at_30: 0.4860
+    recall_at_100: 0.7730
+  hlm_analyzer_decider:
+    DeepSeek-V4-Flash-0731: {hits_at_10: 1.5669, ndcg_at_10: 0.1853, mrr_at_10: 0.4366}
+    GLM-5.1: {hits_at_10: 1.6850, ndcg_at_10: 0.2005, mrr_at_10: 0.4698}
+    Qwen3.8-Flash-Next: {hits_at_10: 1.7349, ndcg_at_10: 0.2099, mrr_at_10: 0.4960}
+
+multidomain:
+  # [CE Hits@10, GAT Hits@10, fusion Hits@10, fusion Hits@30]
+  ewm:     [3.383, 3.480, 4.000, 7.394]
+  gw:      [3.064, 3.110, 3.658, 7.694]
+  driving: [2.960, 2.948, 3.402, 6.616]
+  cosmo:   [2.865, 2.581, 3.256, 6.758]
+  radio:   [2.411, 2.350, 2.975, 5.933]
+  wsi:     [2.454, 2.151, 2.822, 4.876]
+  exo:     [2.492, 1.938, 2.769, 5.718]
+  sqc:     [2.345, 2.498, 2.727, 5.539]
+  fno:     [2.260, 1.932, 2.630, 4.667]
+  sce:     [2.088, 2.118, 2.569, 5.157]
+
+ewm_component_analysis:
+  score_and_rank_fusion: {hits_at_10: 4.000, hits_at_30: 7.394}
+  cross_encoder_only: {hits_at_10: 3.383, hits_at_30: 6.598}
+  gat_only: {hits_at_10: 3.480, hits_at_30: 6.664}
+  score_fusion_only: {hits_at_10: 3.924, hits_at_30: 7.268}
+
+relevance_assessment:
+  queries: 640
+  candidates_per_query: 30
+  judgments: 19200
+  parsed_fraction: 1.0
+  core_fraction: 0.263
+  related_fraction: 0.699
+  core_or_related_fraction: 0.962
+  peripheral_fraction: 0.036
+  none_fraction: 0.001
+  gold_pairs: 8019
+  gold_core_or_related_fraction: 0.978
+  nongold_core_or_related_fraction: 0.951
+
+citation_sentence_generation:
+  nonempty_output: 1.000
+  candidate_id_consistency: 1.000
+  title_consistency: 0.918
+  title_keyword_alignment: 0.894
+  pairwise_distinctness: 0.996
+  citation_context_bertscore_f1: 0.851

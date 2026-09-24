@@ -1,0 +1,27 @@
+data_downloading:
+  download_directory: "nanophotonics_integrated_retrieval/"
+  gexf_file: "test_graph_rr.gexf"
+  processing:
+    random_seed: 10
+    keep_unstructured_content: false
+    arxiv_rate_limit: 3
+    skip_if_downloaded: true
+    download_timeout_sec: 120
+    max_tar_bytes: 104857600
+    download_retries: 2
+
+retriever:
+  embedder: models/base/bge-large-en-v1.5
+  num_retrievals: 5000
+  load_arxiv_embeds: True
+  apply_score_tau: true
+  # Wider auto-τ band (median(head200) − margin) → fill N_max seeds
+  score_tau_margin: 0.10
+  recent_years: 10
+  queries:
+    - "silicon photonics photonic integrated circuit nanophotonic devices"
+    - "nanophotonics nonlinear optics nanoantenna plasmonic waveguide NOT metasurface inverse design"
+    - "integrated photonic computing optical neural network on-chip photonics"
+
+retrieval_nodes_path: "nanophotonics_integrated_retrieval/retrieval_nodes.json"
+failed_downloads_path: "nanophotonics_integrated_retrieval/failed_downloads.json"

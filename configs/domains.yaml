@@ -1,0 +1,515 @@
+domains:
+  sqc:
+    label: Superconducting Quantum Computing
+    enabled: true
+    domain_config: configs/config_sqc.yaml
+    # Split-masked graph: strip test∪frontier outgoing edges.
+    gexf: superconducting_quantum_computing_retrieval/description/test_graph_rr.o2.nofuture.gexf
+    adapter: ""
+    adapter_rr: superconducting_quantum_computing_retrieval/adapter/rr_v6/model
+    adapter_rr_v7: superconducting_quantum_computing_retrieval/adapter/rr_v7/model
+    retrieval_nodes: superconducting_quantum_computing_retrieval/retrieval_nodes.json
+    papers_dir: superconducting_quantum_computing_retrieval/research_papers
+
+  gw:
+    label: Gravitational Wave
+    enabled: true
+    domain_config: configs/config_gw.yaml
+    # Split-masked graph: strip test∪frontier outgoing edges.
+    gexf: gravitational_wave_retrieval/description/test_graph_rr.o2.nofuture.gexf
+    adapter: ""
+    adapter_rr: gravitational_wave_retrieval/adapter/rr_v6/model
+    adapter_rr_v7: gravitational_wave_retrieval/adapter/rr_v7/model
+    retrieval_nodes: gravitational_wave_retrieval/retrieval_nodes.json
+    papers_dir: gravitational_wave_retrieval/research_papers
+
+  ewm:
+    label: Embodied World Model
+    enabled: true
+    domain_config: configs/config_ewm.yaml
+    # Default graph = O2 nofuture: strip test∪frontier out-edges (closes citation-edge leakage).
+    # Full O2 kept as test_graph_rr.o2.gexf (pre-nofuture); admit split/jsonl frozen from full O2.
+    gexf: embodied_world_model_retrieval/description/test_graph_rr.o2.nofuture.gexf
+    adapter: ""
+    adapter_rr: embodied_world_model_retrieval/adapter/rr_v6/model
+    adapter_rr_v7: embodied_world_model_retrieval/adapter/rr_v7/model
+    retrieval_nodes: embodied_world_model_retrieval/retrieval_nodes.json
+    papers_dir: embodied_world_model_retrieval/research_papers
+
+  ewm_rw:
+    label: Embodied World Model (RW rebuild, O2 graph)
+    enabled: false
+    domain_config: configs/config_ewm_rw.yaml
+    # Independent-rebuild lane: O2 title-normalize GEXF, RW-trained ranker only.
+    # Isolated from production `ewm` (AS cutover) and from `ewm_as`.
+    gexf: embodied_world_model_retrieval_rw/description/test_graph_rr.o2.gexf
+    adapter: ""
+    retrieval_nodes: embodied_world_model_retrieval_rw/retrieval_nodes.json
+    # Symlinks to the shared corpus plus lane-only expansion downloads, so
+    # growing this lane's corpus never mutates the production ewm corpus.
+    papers_dir: embodied_world_model_retrieval_rw/research_papers
+
+  ewm_as:
+    label: Embodied World Model (AS graph, RW pipeline)
+    enabled: false
+    domain_config: configs/config_ewm_as.yaml
+    gexf: embodied_world_model_retrieval_as/description/test_graph_rr.gexf
+    adapter: ""
+    retrieval_nodes: embodied_world_model_retrieval_as/retrieval_nodes.json
+    papers_dir: embodied_world_model_retrieval/research_papers
+
+  fno:
+    label: Neural Operator Turbulence
+    enabled: true
+    domain_config: configs/config_fno.yaml
+    # O2 nofuture (Ranker 3.1 prep): strip test∪frontier out-edges.
+    gexf: neural_operator_turbulence_retrieval/description/test_graph_rr.o2.nofuture.gexf
+    adapter: ""
+    retrieval_nodes: neural_operator_turbulence_retrieval/retrieval_nodes.json
+    papers_dir: neural_operator_turbulence_retrieval/research_papers
+
+  wsi:
+    label: Whole-Slide Pathology Representation
+    enabled: true
+    domain_config: configs/config_wsi.yaml
+    # O2 nofuture (Ranker 3.1 prep): strip test∪frontier out-edges.
+    gexf: wsi_pathology_retrieval/description/test_graph_rr.o2.nofuture.gexf
+    adapter: ""
+    retrieval_nodes: wsi_pathology_retrieval/retrieval_nodes.json
+    papers_dir: wsi_pathology_retrieval/research_papers
+
+  mlip:
+    label: Universal ML Interatomic Potentials
+    enabled: false
+    domain_config: configs/config_mlip.yaml
+    gexf: universal_mlip_retrieval/description/test_graph_rr.gexf
+    adapter: ""
+    retrieval_nodes: universal_mlip_retrieval/retrieval_nodes.json
+    papers_dir: universal_mlip_retrieval/research_papers
+
+  dock:
+    label: Generative Protein-Ligand Docking
+    enabled: false
+    domain_config: configs/config_dock.yaml
+    gexf: generative_docking_retrieval/description/test_graph_rr.gexf
+    adapter: ""
+    retrieval_nodes: generative_docking_retrieval/retrieval_nodes.json
+    papers_dir: generative_docking_retrieval/research_papers
+
+  meta:
+    label: AI-driven Metasurface Inverse Design
+    enabled: false
+    domain_config: configs/config_meta.yaml
+    gexf: metasurface_inverse_design_retrieval/description/test_graph_rr.gexf
+    adapter: ""
+    retrieval_nodes: metasurface_inverse_design_retrieval/retrieval_nodes.json
+    papers_dir: metasurface_inverse_design_retrieval/research_papers
+
+
+  topo:
+    label: Topological Quantum Materials
+    enabled: false
+    domain_config: configs/config_topo.yaml
+    # retrieve-only screen (L2-10); gexf cutover deferred to graph-build
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: topological_quantum_materials_retrieval/retrieval_nodes.json
+    papers_dir: topological_quantum_materials_retrieval/research_papers
+
+  sce:
+    label: Strongly Correlated Electrons
+    enabled: true
+    domain_config: configs/config_sce.yaml
+    # O2 nofuture (Ranker 3.1): strip test∪frontier out-edges.
+    gexf: strongly_correlated_electrons_retrieval/description/test_graph_rr.o2.nofuture.gexf
+    adapter: ""
+    retrieval_nodes: strongly_correlated_electrons_retrieval/retrieval_nodes.json
+    papers_dir: strongly_correlated_electrons_retrieval/research_papers
+
+  qopt:
+    label: Quantum Optics and Cavity QED
+    enabled: false
+    domain_config: configs/config_qopt.yaml
+    # O2 nofuture (Ranker 3.1): strip test∪frontier out-edges.
+    gexf: quantum_optics_retrieval/description/test_graph_rr.o2.nofuture.gexf
+    adapter: ""
+    retrieval_nodes: quantum_optics_retrieval/retrieval_nodes.json
+    papers_dir: quantum_optics_retrieval/research_papers
+
+  nanoph:
+    label: Nanophotonics and Integrated Photonics
+    enabled: false
+    domain_config: configs/config_nanoph.yaml
+    # retrieve-only screen (L2-10); gexf cutover deferred to graph-build
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: nanophotonics_integrated_retrieval/retrieval_nodes.json
+    papers_dir: nanophotonics_integrated_retrieval/research_papers
+
+  seism:
+    label: Computational Seismology
+    enabled: false
+    domain_config: configs/config_seism.yaml
+    # retrieve-only screen (L2-10); gexf cutover deferred to graph-build
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: computational_seismology_retrieval/retrieval_nodes.json
+    papers_dir: computational_seismology_retrieval/research_papers
+
+  manip:
+    label: Robot Manipulation and Dexterous Grasping
+    enabled: false
+    domain_config: configs/config_manip.yaml
+    # screen 73.77 P1 (table22); graph pending
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: robot_manipulation_retrieval/retrieval_nodes.json
+    papers_dir: robot_manipulation_retrieval/research_papers
+
+  lqcd:
+    label: Lattice QCD and Hadron Spectrum
+    enabled: false
+    domain_config: configs/config_lqcd.yaml
+    # hits35 recommend merge; screen/L2 pending
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: lattice_qcd_retrieval/retrieval_nodes.json
+    papers_dir: lattice_qcd_retrieval/research_papers
+
+  pta:
+    label: Pulsar Timing Arrays
+    enabled: false
+    domain_config: configs/config_pta.yaml
+    # hits35 recommend merge; screen/L2 pending
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: pulsar_timing_array_retrieval/retrieval_nodes.json
+    papers_dir: pulsar_timing_array_retrieval/research_papers
+
+  qsens:
+    label: Quantum Sensing and NV Centers
+    enabled: false
+    domain_config: configs/config_qsens.yaml
+    # hits35 recommend merge; screen/L2 pending
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: quantum_sensing_retrieval/retrieval_nodes.json
+    papers_dir: quantum_sensing_retrieval/research_papers
+
+  softbot:
+    label: Soft and Continuum Robotics
+    enabled: false
+    domain_config: configs/config_softbot.yaml
+    # hits35 recommend merge; screen/L2 pending
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: soft_robotics_retrieval/retrieval_nodes.json
+    papers_dir: soft_robotics_retrieval/research_papers
+
+  uca:
+    label: Ultracold Atoms and BEC
+    enabled: false
+    domain_config: configs/config_uca.yaml
+    # hits35 recommend merge; screen/L2 pending
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: ultracold_atoms_retrieval/retrieval_nodes.json
+    papers_dir: ultracold_atoms_retrieval/research_papers
+
+  nucl:
+    label: Nuclear Structure and Reactions
+    enabled: false
+    domain_config: configs/config_nucl.yaml
+    # vocab-gated recommend-5; retrieve/L2 screen
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: nuclear_physics_retrieval/retrieval_nodes.json
+    papers_dir: nuclear_physics_retrieval/research_papers
+
+  statmech:
+    label: Statistical Mechanics and Critical Phenomena
+    enabled: false
+    domain_config: configs/config_statmech.yaml
+    # vocab-gated recommend-5; retrieve/L2 screen
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: statistical_mechanics_retrieval/retrieval_nodes.json
+    papers_dir: statistical_mechanics_retrieval/research_papers
+
+  string:
+    label: String Theory and Holography
+    enabled: false
+    domain_config: configs/config_string.yaml
+    # vocab-gated recommend-5; retrieve/L2 screen
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: string_theory_retrieval/retrieval_nodes.json
+    papers_dir: string_theory_retrieval/research_papers
+
+  control:
+    label: Control Theory and Dynamical Systems
+    enabled: false
+    domain_config: configs/config_control.yaml
+    # vocab-gated recommend-5; retrieve/L2 screen
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: control_systems_retrieval/retrieval_nodes.json
+    papers_dir: control_systems_retrieval/research_papers
+
+  biophys:
+    label: Biophysics and Molecular Simulation
+    enabled: false
+    domain_config: configs/config_biophys.yaml
+    # vocab-gated recommend-5; retrieve/L2 screen
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: biophysics_retrieval/retrieval_nodes.json
+    papers_dir: biophysics_retrieval/research_papers
+
+
+  fluids:
+    label: Fluid Dynamics and CFD
+    enabled: false
+    domain_config: configs/config_fluids.yaml
+    # recommend5 v3; retrieve/L2 screen
+    gexf: fluid_dynamics_retrieval/description/test_graph_rr.gexf
+    adapter: ""
+    retrieval_nodes: fluid_dynamics_retrieval/retrieval_nodes.json
+    papers_dir: fluid_dynamics_retrieval/research_papers
+
+  alggeom:
+    label: Algebraic Geometry
+    enabled: false
+    domain_config: configs/config_alggeom.yaml
+    # recommend5 v3; retrieve/L2 screen
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: algebraic_geometry_retrieval/retrieval_nodes.json
+    papers_dir: algebraic_geometry_retrieval/research_papers
+
+  atomic:
+    label: Atomic Physics
+    enabled: false
+    domain_config: configs/config_atomic.yaml
+    # recommend5 v3; retrieve/L2 screen
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: atomic_physics_retrieval/retrieval_nodes.json
+    papers_dir: atomic_physics_retrieval/research_papers
+
+  plasma:
+    label: Plasma Physics
+    enabled: false
+    domain_config: configs/config_plasma.yaml
+    # recommend5 v3; retrieve/L2 screen
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: plasma_physics_retrieval/retrieval_nodes.json
+    papers_dir: plasma_physics_retrieval/research_papers
+
+  optapp:
+    label: Applied and Classical Optics
+    enabled: false
+    domain_config: configs/config_optapp.yaml
+    # recommend5 v3; retrieve/L2 screen
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: applied_optics_retrieval/retrieval_nodes.json
+    papers_dir: applied_optics_retrieval/research_papers
+
+
+  numth:
+    label: Number Theory
+    enabled: false
+    domain_config: configs/config_numth.yaml
+    # recommend5 v4; retrieve/L2 screen
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: number_theory_retrieval/retrieval_nodes.json
+    papers_dir: number_theory_retrieval/research_papers
+
+  diffgeom:
+    label: Differential Geometry
+    enabled: false
+    domain_config: configs/config_diffgeom.yaml
+    # recommend5 v4; retrieve/L2 screen
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: differential_geometry_retrieval/retrieval_nodes.json
+    papers_dir: differential_geometry_retrieval/research_papers
+
+  gr:
+    label: General Relativity
+    enabled: false
+    domain_config: configs/config_gr.yaml
+    # recommend5 v4; retrieve/L2 screen
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: general_relativity_retrieval/retrieval_nodes.json
+    papers_dir: general_relativity_retrieval/research_papers
+
+  combin:
+    label: Combinatorics
+    enabled: false
+    domain_config: configs/config_combin.yaml
+    # recommend5 v4; retrieve/L2 screen
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: combinatorics_retrieval/retrieval_nodes.json
+    papers_dir: combinatorics_retrieval/research_papers
+
+  infotheory:
+    label: Information Theory
+    enabled: false
+    domain_config: configs/config_infotheory.yaml
+    # recommend5 v4; retrieve/L2 screen
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: information_theory_retrieval/retrieval_nodes.json
+    papers_dir: information_theory_retrieval/research_papers
+
+  clim:
+    label: Climate Dynamics and Modeling
+    enabled: false
+    domain_config: configs/config_clim.yaml
+    # retrieve-only screen (L2-10); gexf cutover deferred to graph-build
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: climate_dynamics_modeling_retrieval/retrieval_nodes.json
+    papers_dir: climate_dynamics_modeling_retrieval/research_papers
+
+  nu:
+    label: Neutrino Physics
+    enabled: false
+    domain_config: configs/config_nu.yaml
+    # retrieve-only screen (L2-10); gexf cutover deferred to graph-build
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: neutrino_physics_retrieval/retrieval_nodes.json
+    papers_dir: neutrino_physics_retrieval/research_papers
+
+  dm:
+    label: Dark Matter Detection
+    enabled: false
+    domain_config: configs/config_dm.yaml
+    # retrieve-only screen (L2-10); gexf cutover deferred to graph-build
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: dark_matter_detection_retrieval/retrieval_nodes.json
+    papers_dir: dark_matter_detection_retrieval/research_papers
+
+  neuroimg:
+    label: Clinical Neuroimaging
+    enabled: false
+    domain_config: configs/config_neuroimg.yaml
+    # retrieve-only screen (L2-10); gexf cutover deferred to graph-build
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: clinical_neuroimaging_retrieval/retrieval_nodes.json
+    papers_dir: clinical_neuroimaging_retrieval/research_papers
+
+  radseg:
+    label: Volumetric Medical Image Analysis
+    enabled: false
+    domain_config: configs/config_radseg.yaml
+    # O2 nofuture (Ranker 3.1): strip test∪frontier out-edges.
+    gexf: volumetric_medical_image_retrieval/description/test_graph_rr.o2.nofuture.gexf
+    adapter: ""
+    retrieval_nodes: volumetric_medical_image_retrieval/retrieval_nodes.json
+    papers_dir: volumetric_medical_image_retrieval/research_papers
+
+  fusion:
+    label: Magnetic Confinement Fusion
+    enabled: false
+    domain_config: configs/config_fusion.yaml
+    # replace8 screen; gexf built (GQ 12.28, stage-2 fail)
+    gexf: magnetic_confinement_fusion_retrieval/description/test_graph_rr.gexf
+    adapter: ""
+    retrieval_nodes: magnetic_confinement_fusion_retrieval/retrieval_nodes.json
+    papers_dir: magnetic_confinement_fusion_retrieval/research_papers
+
+  exo:
+    label: Exoplanet Astronomy
+    enabled: true
+    domain_config: configs/config_exo.yaml
+    # O2 nofuture (Ranker 3.1): strip test∪frontier out-edges.
+    gexf: exoplanet_astronomy_retrieval/description/test_graph_rr.o2.nofuture.gexf
+    adapter: ""
+    retrieval_nodes: exoplanet_astronomy_retrieval/retrieval_nodes.json
+    papers_dir: exoplanet_astronomy_retrieval/research_papers
+
+  radio:
+    label: Radio Astronomy
+    enabled: true
+    domain_config: configs/config_radio.yaml
+    # replace8 screen; gexf built (GQ 44.59, sparse)
+    gexf: radio_astronomy_retrieval/description/test_graph_rr.o2.nofuture.gexf
+    adapter: ""
+    retrieval_nodes: radio_astronomy_retrieval/retrieval_nodes.json
+    papers_dir: radio_astronomy_retrieval/research_papers
+
+  electrochem:
+    label: Electrochemistry and Energy Storage
+    enabled: false
+    domain_config: configs/config_electrochem.yaml
+    # revive into active 22; gexf deferred
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: electrochemistry_energy_storage_retrieval/retrieval_nodes.json
+    papers_dir: electrochemistry_energy_storage_retrieval/research_papers
+
+  nlo:
+    label: Nonlinear Optics
+    enabled: false
+    domain_config: configs/config_nlo.yaml
+    # replace8 screen; gexf deferred
+    gexf: nonlinear_optics_retrieval/description/test_graph_rr.gexf
+    adapter: ""
+    retrieval_nodes: nonlinear_optics_retrieval/retrieval_nodes.json
+    papers_dir: nonlinear_optics_retrieval/research_papers
+
+  driving:
+    label: Autonomous Driving Perception
+    enabled: true
+    domain_config: configs/config_driving.yaml
+    # O2 nofuture (Ranker 3.1): strip test∪frontier out-edges.
+    gexf: autonomous_driving_retrieval/description/test_graph_rr.o2.nofuture.gexf
+    adapter: ""
+    retrieval_nodes: autonomous_driving_retrieval/retrieval_nodes.json
+    papers_dir: autonomous_driving_retrieval/research_papers
+
+  cosmo:
+    label: Physical Cosmology
+    enabled: true
+    domain_config: configs/config_cosmo.yaml
+    # O2 nofuture (Ranker 3.1): strip test∪frontier out-edges.
+    gexf: physical_cosmology_retrieval/description/test_graph_rr.o2.nofuture.gexf
+    adapter: ""
+    retrieval_nodes: physical_cosmology_retrieval/retrieval_nodes.json
+    papers_dir: physical_cosmology_retrieval/research_papers
+
+  hep:
+    label: High-Energy Astrophysics
+    enabled: false
+    domain_config: configs/config_hep.yaml
+    # O2 nofuture (Ranker 3.1): strip test∪frontier out-edges.
+    gexf: high_energy_astrophysics_retrieval/description/test_graph_rr.o2.nofuture.gexf
+    adapter: ""
+    retrieval_nodes: high_energy_astrophysics_retrieval/retrieval_nodes.json
+    papers_dir: high_energy_astrophysics_retrieval/research_papers
+  pp:
+    label: Collider Particle Physics
+    enabled: false
+    domain_config: configs/config_pp.yaml
+    # replace electrochem (<75); gexf deferred
+    gexf: ""
+    adapter: ""
+    retrieval_nodes: collider_particle_physics_retrieval/retrieval_nodes.json
+    papers_dir: collider_particle_physics_retrieval/research_papers
+
+shared:
+  embedder: models/base/bge-large-en-v1.5
+  topics_cache: datasets/arxiv_topics
+  embeddings_cache: datasets/topic_level_embeds
+  metadata: datasets/arxiv-metadata-oai-snapshot.json
+  domain_embeddings_cache: datasets/domain_embeddings

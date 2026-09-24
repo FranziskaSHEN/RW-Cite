@@ -1,0 +1,7 @@
+Replace this file with one manually reviewed example drawn only from the
+training partition. Include: (1) the query title and abstract, (2) candidate
+IDs and the same evidence representation used at evaluation, (3) a concise
+Analyzer assessment for every candidate, and (4) a Decider JSON object of the
+form {"ranked_ids":["id1",...,"id10"]}. Do not include development/test
+queries, gold labels, retrieval scores, or facts absent from the supplied
+evidence.

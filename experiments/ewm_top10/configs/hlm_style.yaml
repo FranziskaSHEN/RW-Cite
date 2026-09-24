@@ -1,0 +1,13 @@
+model: models/base/gte-base
+freeze_bottom_layers: 7
+max_length: 512
+learning_rate: 0.00001
+epochs_per_stage: 10
+stage1_physical_batch_size: 32
+stage1_gradient_accumulation: 16
+stage1_effective_batch_size: 512
+stage2_gradient_accumulation: 96
+stage2_loss: smooth_neural_ndcg
+retrieval_size: 30
+output_size: 10
+llm_temperature: 0

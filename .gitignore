@@ -1,0 +1,44 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Runtime assets (linked or downloaded; not in git)
+datasets/**
+!datasets/.gitkeep
+models/**
+!models/.gitkeep
+logs/**
+!logs/.gitkeep
+outputs/**
+!outputs/.gitkeep
+
+# Domain retrieval corpora (base + lane variants e.g. *_retrieval_as / *_retrieval_rw)
+*_retrieval/
+*_retrieval_*/
+
+# Local env
+.env
+*.bak
+
+# Local merge source bundle; never include it in release archives.
+RW-Cite-Baseline/
+
+# Local console captures.
+/bash
+
+# Generated public-release trees. The tracked README files describe each
+# destination; staged code, data, and archives are rebuilt from source.
+/releases/github/RW-Cite/
+/releases/github/*.tar.gz
+/releases/huggingface/corpus/RW-Cite-datasets-*/
+/releases/huggingface/corpus/*.tar.gz
+/releases/huggingface/domains/RW-Cite-domain-*/
+/releases/huggingface/domains/*.tar.gz
+/releases/huggingface/domains/COLLECTION_MANIFEST.json

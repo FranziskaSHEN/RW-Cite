@@ -1,0 +1,11 @@
+model: models/base/scibert_scivocab_uncased
+max_length: 256
+pooling: mean
+temperature: 0.05
+learning_rate: 0.00002
+weight_decay: 0.01
+warmup_ratio: 0.10
+physical_batch_size: 32
+gradient_accumulation: 4
+effective_batch_size: 128
+epochs: 5
